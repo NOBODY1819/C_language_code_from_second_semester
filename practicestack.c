@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <conio.h>
 int top = -1, max;
 int sta[];
 
@@ -13,7 +14,7 @@ int isfull()
     return 1;
 }
 
-int push()
+void push()
 {
     int num;
     if (isfull())
@@ -22,6 +23,7 @@ int push()
         scanf("%d", &num);
         top++;
         sta[top] = num;
+        printf("Number Pushed");
     }
 }
 int isempty()
@@ -35,7 +37,7 @@ int isempty()
     return 1;
 }
 
-int pop()
+void pop()
 {
 
     if (isempty())
@@ -44,18 +46,18 @@ int pop()
         top--;
     }
 }
-int peek()
+void peek()
 {
 
     if (isempty())
     {
-        printf("Element at top = %d", sta[top]);
+        printf("Element at top %d = %d", top, sta[top]);
     }
 }
-int display()
+void display()
 {
     printf("Element in stack :");
-    for (int i = top; i >= 0; i++)
+    for (int i = top; i >= 0; i--)
     {
         printf(" %d", sta[i]);
     }
@@ -64,36 +66,59 @@ int main()
 {
 
     int c;
-    printf("Enter max no. in stack:");
-    scanf("%d", &max);
+    printf("Enter max no. in stack : ");
+    scanf("%d",&max);
 
     int r;
 r:
-    printf("1)Push\n2)Pop\n3)Peek\n4)Display\n5)Exit\nEnter choice :");
+    printf("\n1)Push\n2)Pop\n3)Peek\n4)Display\n5) Isempty\n6)Isfull\n7)Exit\nEnter choice :");
     scanf("%d", &c);
     switch (c)
     {
     case 1:
         push();
-        clrscr();
+        getch();
+        system("cls");
         goto r;
         break;
     case 2:
         pop();
-        clrscr();
+        getch();
+        system("cls");
         goto r;
     case 3:
         peek();
-        clrscr();
+        getch();
+        system("cls");
         goto r;
     case 4:
         display();
-        clrscr();
+        getch();
+        system("cls");
         goto r;
     case 5:
+        if (isempty())
+        {
+            printf("Stack is not empty");
+        }
+        getch();
+        system("cls");
+        goto r;
+    case 6:
+
+        if (isfull())
+        {
+            printf("Stack is not full");
+        }
+        getch();
+        system("cls");
+        goto r;
+    case 7:
+        printf("****System Exit****");
         break;
     default:
-        break;
+        printf("Invalid choice! Try again");
+        goto r;
     }
     return 0;
 }
