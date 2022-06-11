@@ -1,8 +1,10 @@
 #include <stdio.h>
 #include <conio.h>
 #include <stdlib.h>
+int s;
+int *a;
 
-void insertion(int *x, int s) // array and size
+void insertion(int *x) // function for insertion in array
 {
     int p, e; // position,element
     printf("\nEnter position to edit :");
@@ -12,14 +14,14 @@ void insertion(int *x, int s) // array and size
 
         printf("Enter element :");
         scanf("%d", &e);
-
-        for (int i = s - 1; i >= p - 1; i--)
+        s++;
+        for (int i = s - 1; i >= p; i--)
         {
             x[i + 1] = x[i];
         }
-        x[p - 1] = e;
+        x[p] = e;
         printf("\nNew elements in array :");
-        for (int i = 0; i <= s; i++)
+        for (int i = 0; i < s; i++)
         {
             printf(" %d", x[i]);
         }
@@ -28,15 +30,17 @@ void insertion(int *x, int s) // array and size
     {
         printf("Invalid position");
     }
+    getch();       // hold screen
+    system("cls"); // clear screen
 }
-void linear_search(int *x)
+void linear_search(int *x) // function for linear search in array
 {
-    int s, f; // search,found
+    int e, f = 0; // element,found
     printf("Enter number to search :");
-    scanf("%d", &s);
-    for (int i = 0; i < 6; i++)
+    scanf("%d", &e);
+    for (int i = 0; i < s; i++)
     {
-        if (x[i] == s)
+        if (x[i] == e)
         {
             printf("Element at index %d is %d", i, x[i]);
             f++;
@@ -48,13 +52,13 @@ void linear_search(int *x)
         printf("Number not found");
     }
 }
-void deletion(int *b, int s)
+void deletion(int *b) // function for deletion in array
 {
 
     int x; // positon
     printf("Enter the position to delete :");
     scanf("%d", &x);
-    if (x >= 0 && x < s)
+    if (x >= 0 && x <= s)
     {
         for (int i = x; i < s; i++)
         {
@@ -76,20 +80,19 @@ void deletion(int *b, int s)
 int main()
 {
 
-    int choice, n, r; // choice,numbers,return
+    int choice, r; // choice,numbers,return
     printf("Enter size of array :");
-    scanf("%d", &n);
-    int *a = (int *)(calloc(n, sizeof(int))); //declaring aeeay dynamicaly
-
+    scanf("%d", &s);
+    a = (int *)(calloc(s, sizeof(int))); // declaring array dynamicaly
     printf("Enter no in array :");
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < s; i++)
     {
         scanf("%d", &a[i]);
     }
 
     printf("Elements in array :");
 
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < s; i++)
     {
         printf(" %d", a[i]);
     }
@@ -100,10 +103,8 @@ r:
     switch (choice)
     {
     case 1:
-        insertion(a, n);  //giving array and size to function
-        
-        getch();   //hold screen
-        system("cls");  //clear screen
+        insertion(a); // giving array to function
+
         goto r;
     case 2:
         linear_search(a);
@@ -111,9 +112,9 @@ r:
         system("cls");
         goto r;
     case 3:
-        deletion(a, n);
-        getch(); 
-        system("cls");  
+        deletion(a);
+        getch();
+        system("cls");
         goto r;
     case 4:
         printf("\n****System Exit***");
