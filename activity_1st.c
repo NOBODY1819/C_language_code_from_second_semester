@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include <conio.h>
 #include <stdlib.h>
@@ -60,16 +61,16 @@ void deletion(int *b) // function for deletion in array
     scanf("%d", &x);
     if (x >= 0 && x <= s)
     {
-        for (int i = x; i < s; i++)
+        for (int i = x-1; i < s; i++)
         {
             b[i] = b[i + 1];
         }
         printf("Element deleted");
         printf("\nNew array :");
         s--;
-        for (int i = 0; i <= s; i++)
+        for (int i = 0; i < s; i++)
         {
-            printf(" %d\n", b[i]);
+            printf(" %d", b[i]);
         }
     }
     else
